@@ -5,6 +5,4 @@ export interface Expense {
     description: string;
     amount: number;
     createdDate: string;
-    author: string;
-    additionalNotes: string;
 }

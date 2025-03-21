@@ -1,3 +1,7 @@
-export default function Page() {
-    return <p>Dashboard Page</p>;
+export default function Dashboard() {
+    return (
+        <div className="min-h-screen bg-white flex flex-col gap-10">
+            <h1>Dashboard Page</h1>
+        </div>
+    );
 }
