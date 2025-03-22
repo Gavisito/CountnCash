@@ -30,7 +30,6 @@ export default function Home() {
 				<Features/>
 				<FAQ/>
 			</main>
-			<Footer/>
 		</div>
 	);
 }

@@ -6,7 +6,7 @@ export default function Navigation() {
 	return (
 		<nav className="bg-indigo-600 text-white p-3 sticky top-0 left-0 w-full">
 			<div className="flex justify-between items-center">
-				{/* App Icon */}
+				{/* App Icon Stuff*/}
 				<div className="flex flex-row gap-2">
 					<CurrencyDollarIcon className="w-8 h-8"/>
 					<span className="font-bold text-2xl">BK</span>
