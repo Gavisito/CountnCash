@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Footer from "@/app/components/ui/home/footer";
+import Footer from "@/app/components/ui/footer";
 
 
 export default function Dashboard() {

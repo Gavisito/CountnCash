@@ -1,7 +1,7 @@
 import Features from "@/app/components/ui/home/features";
 import FAQ from "@/app/components/ui/home/faq";
 import Image from "next/image";
-import Footer from "@/app/components/ui/home/footer";
+import Footer from "@/app/components/ui/footer";
 
 export default function Home() {
 	return (
