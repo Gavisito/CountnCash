@@ -1,7 +1,7 @@
 import Table from "@/app/components/displayLayouts/table";
 import Grid from "@/app/components/displayLayouts/grid";
 import  CardStack from "@/app/components/displayLayouts/cardStack"
-import { TableCellsIcon, Square3Stack3DIcon, Squares2X2Icon } from "@heroicons/react/24/outline"; 
+import { TableCellsIcon, QueueListIcon, Squares2X2Icon } from "@heroicons/react/24/outline"; 
 
 export default function ExpensePage() {
     return (
@@ -16,7 +16,7 @@ export default function ExpensePage() {
                     </div>
                     <div>
                         <button className="w-10 h-10">
-                            <Square3Stack3DIcon/> 
+                            <QueueListIcon/>
                         </button>
                     </div>
                     <div>
