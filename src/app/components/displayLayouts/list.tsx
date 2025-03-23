@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline"; 
-export default function CardStack() {
+export default function List() {
     return (
         <div className="flex flex-col gap-8 mt-6 w-full m-auto">
             <details>
