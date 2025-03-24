@@ -1,7 +1,7 @@
 "use client";
 import Table from "@/app/components/displayLayouts/table";
 import Grid from "@/app/components/displayLayouts/grid";
-import  List from "@/app/components/displayLayouts/list"
+import List from "@/app/components/displayLayouts/list"
 import { TableCellsIcon, QueueListIcon, Squares2X2Icon } from "@heroicons/react/24/outline"; 
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ export default function ExpensePage() {
     {/*This handles user choice when the button is clicked*/}
     function showSelectedLayout() {
         switch (layout) {
-            case "Table":
+            case "Table": 
                 return <Table/>
                 
             case "List":
@@ -29,19 +29,24 @@ export default function ExpensePage() {
 
     return (
         <div className="min-h-screen bg-white flex flex-col p-3 gap-6">
+            {/*Expense List Page Title*/}
             <h1 className="mt-6 mb-2 text-4xl font-bold">Expense List</h1>
             <article className="flex flex-col gap-5">
+                {/*Layout Choices To Displaying Content*/}
                 <section className="flex flex-row gap-5">
+                    {/*Display Table Button*/}
                     <div>
                         <button className="w-10 h-10" onClick={() => setLayout("Table")}>
                             <TableCellsIcon/>
                         </button>
                     </div>
+                    {/*Display List Button*/}
                     <div>
                         <button className="w-10 h-10" onClick={() => setLayout("List")}>
                             <QueueListIcon/>
                         </button>
                     </div>
+                    {/*Display Grid Button*/}
                     <div>
                         <button className="w-10 h-10" onClick={() => setLayout("Grid")}>
                             <Squares2X2Icon/>

@@ -3,8 +3,12 @@ import Image from "next/image";
 export default function Dashboard() {
     return (
         <div className="min-h-screen bg-white flex flex-col p-3 gap-6">
+            {/*page Title*/}
             <h1 className="mt-6 mb-2 text-4xl font-bold">Overview Dashboard</h1>
+
+            {/*Dashboard Content*/}
             <article className="gap-5 flex flex-col-reverse md:flex-col">
+                {/*Summary content*/}
                 <section className="md:grid md:grid-cols-8 flex flex-col gap-3 text-white">
                     <div className="col-span-2 bg-indigo-600 p-5 rounded-lg">
                         <h2 className="text-xl font-bold">Number of Expenses:</h2>
@@ -19,7 +23,9 @@ export default function Dashboard() {
                         <p className="text-lg">Utilities</p>
                     </div>
                 </section>
+                {/*Data Visualization Content*/}
                 <section className="sm:grid sm:grid-cols-8 flex flex-col gap-3">
+                    {/*Pie Chart*/}
                     <div className="w-full rounded-lg col-start-1 col-end-4">
                         <Image
                             src="/wordStockIMG.jpg"
@@ -29,6 +35,7 @@ export default function Dashboard() {
                             alt="Microsoft word stock image of accounting documents"
                         />
                     </div>
+                    {/*Line Chart*/}
                     <div className="w-full rounded-lg col-start-4 col-end-9">
                         <Image
                             src="/wordStockIMG.jpg"
@@ -40,6 +47,7 @@ export default function Dashboard() {
                     </div>
                 </section>
             </article>
+            {/*Recemt Expenese Table 10 Items MAXXXX*/}
             <article className="flex flex-col pb-6">
                 <h2 className="mb-3 text-3xl font-bold">Recent Expenses</h2>
                 <section className="overflow-x-scroll">

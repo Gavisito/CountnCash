@@ -30,6 +30,7 @@ export default function RootLayout({
         {/*Global Navigation UI*/}
         <Navigation/>
         {children}
+        {/*Global Footer UI*/}
         <Footer/>
       </body>
     </html>

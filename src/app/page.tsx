@@ -25,8 +25,9 @@ export default function Home() {
 			</header>
 			{/* Main Content */}
 			<main className="m-3 flex flex-col gap-10">
-				{/* feature Section */}
+				{/* Feature Section */}
 				<Features/>
+				{/*FAQ Section*/}
 				<FAQ/>
 			</main>
 		</div>
