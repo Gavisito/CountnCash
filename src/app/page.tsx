@@ -19,6 +19,7 @@ export default function Home() {
 					src="/wordStockIMG.jpg"
 					width={800}
 					height={90}
+					priority
 					className="w-full max-h-135 rounded-lg"
 					alt="Microsoft word stock image of accounting documents"
 				/>
