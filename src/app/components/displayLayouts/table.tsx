@@ -1,4 +1,10 @@
-export default function Table() {
+import { Expense } from "@/app/types/expense"
+// reference point: https://github.com/rmichak/IT431-NextJS-Sample-Courses/blob/main/components/CourseCard.tsx
+interface TableProp {
+    expenses: Expense[]
+}
+
+export default function Table({ expenses }: TableProp) {
     return (
         <section className="overflow-x-scroll">
             <table className="w-140 sm:w-full">
@@ -11,36 +17,18 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody className="border-2 border-black">
-                    <tr>
-                        <td className="border-3 border-black text-start p-1">1</td>
-                        <td className="border-3 border-black text-start p-1">Taco Bamba Food</td>
-                        <td className="border-3 border-black text-start p-1">March, 22, 2025</td>
-                        <td className="border-3 border-black text-start p-1">Food</td>
-                    </tr>
-                    <tr>
-                        <td className="border-3 border-black text-start p-1">1</td>
-                        <td className="border-3 border-black text-start p-1">Taco Bamba Food</td>
-                        <td className="border-3 border-black text-start p-1">March, 22, 2025</td>
-                        <td className="border-3 border-black text-start p-1">Food</td>
-                    </tr>
-                    <tr>
-                        <td className="border-3 border-black text-start p-1">1</td>
-                        <td className="border-3 border-black text-start p-1">Taco Bamba Food</td>
-                        <td className="border-3 border-black text-start p-1">March, 22, 2025</td>
-                        <td className="border-3 border-black text-start p-1">Food</td>
-                    </tr>
-                    <tr>
-                        <td className="border-3 border-black text-start p-1">1</td>
-                        <td className="border-3 border-black text-start p-1">Taco Bamba Food</td>
-                        <td className="border-3 border-black text-start p-1">March, 22, 2025</td>
-                        <td className="border-3 border-black text-start p-1">Food</td>
-                    </tr>
-                    <tr>
-                        <td className="border-3 border-black text-start p-1">1000</td>
-                        <td className="border-3 border-black text-start p-1">Taco Bamba Food</td>
-                        <td className="border-3 border-black text-start p-1">March, 22, 2025</td>
-                        <td className="border-3 border-black text-start p-1">Food</td>
-                    </tr>
+                    {
+                        expenses.map(expenseItem => {
+                            return (
+                                <tr key={expenseItem.id}>
+                                    <td className="border-3 border-black text-start p-1">{expenseItem.id}</td>
+                                    <td className="border-3 border-black text-start p-1">{expenseItem.name}</td>
+                                    <td className="border-3 border-black text-start p-1">{expenseItem.createdDate}</td>
+                                    <td className="border-3 border-black text-start p-1">{expenseItem.category}</td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </table>
         </section>

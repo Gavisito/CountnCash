@@ -36,7 +36,6 @@ export async function POST(request: Request) {
 
         //fecthing current expense.json array
         const jsonData = await fs.promises.readFile(filePath, "utf-8");
-        
         //Expense[] ensures that an array is expected with correct underlying data types
         const expenses: Expense[] = JSON.parse(jsonData);
         

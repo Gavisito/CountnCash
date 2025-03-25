@@ -3,27 +3,54 @@ import Table from "@/app/components/displayLayouts/table";
 import Grid from "@/app/components/displayLayouts/grid";
 import List from "@/app/components/displayLayouts/list"
 import { TableCellsIcon, QueueListIcon, Squares2X2Icon } from "@heroicons/react/24/outline"; 
-import { useState } from "react";
+import { useEffect, useState} from "react";
+import { Expense } from "@/app/types/expense";
+import axios from "axios"
 
 
 export default function ExpensePage() {
-    {/*dynmaic choice for user to selecte what layout they want by storing string layouttype*/}
+    // use state to set expesnse.json into a variable
+    const [expenses, setData] = useState<Expense[]>([]);
+
+    // dynmaic choice for user to selecte what layout they want by storing string layouttype
     const [layout, setLayout] = useState("Table");
 
-    {/*This handles user choice when the button is clicked*/}
+        // fetching api data to pass props in the layouts
+    useEffect(() => {
+        async function getExpenses() {
+            try {
+                // getting geenral expense data
+                const response = await axios.get("/api/expenses");
+
+                // storing data into one variable for better readability
+                const expensesData: Expense[] = response.data.expenses;
+                
+                //setting fecthed data in expense variable for display
+                setData(expensesData); 
+
+            } catch(error) {
+                console.log("Error: " + error);
+            }
+        }
+        
+        //starting the process
+        getExpenses();
+    }, []);
+
+    // This handles user choice when the button is clicked
     function showSelectedLayout() {
         switch (layout) {
             case "Table": 
-                return <Table/>
+                return <Table expenses={expenses}/>
                 
             case "List":
-                return <List/>
+                return <List expenses={expenses}/>
     
             case "Grid":
-                return <Grid/>
+                return <Grid expenses={expenses}/>
 
             default:
-                return <Table/>
+                return <Table expenses={expenses}/>
         }
     }
 
