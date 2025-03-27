@@ -15,7 +15,7 @@ export default function ExpensePage() {
     // dynmaic choice for user to selecte what layout they want by storing string layouttype
     const [layout, setLayout] = useState("Table");
 
-        // fetching api data to pass props in the layouts
+    // fetching api data to pass props in the layouts
     useEffect(() => {
         async function getExpenses() {
             try {

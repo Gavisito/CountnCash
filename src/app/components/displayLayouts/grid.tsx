@@ -1,5 +1,6 @@
 import { Expense } from "@/app/types/expense";
 import { ChevronRightIcon } from "@heroicons/react/24/outline"; 
+import Link from "next/link";
 // reference point: https://github.com/rmichak/IT431-NextJS-Sample-Courses/blob/main/components/CourseCard.tsx
 interface GridProp {
     expenses: Expense[]
@@ -12,15 +13,17 @@ export default function Grid ({ expenses }: GridProp) {
                 expenses.map(expenseItem => {
                     return (
                         <article key={expenseItem.id} className="border-black border-3 h-auto p-3 sm:p-5 flex flex-col w-full rounded-lg">
-                            <h2 className="text-base font-bold underline sm:text-xl md:text-2xl mb-3">{expenseItem.name}</h2>
+                            <h2 className="text-base font-bold underline sm:text-xl md:text-2xl mb-3"><Link href={`/dashboard/expenses/${expenseItem.id}/`}>{expenseItem.name}</Link></h2>
                             <section className="flex flex-col gap-2">
                                 <p className="text-xs sm:text-sm md:text-sm">ID: {expenseItem.id}</p>
                                 <p className="text-xs sm:text-sm md:text-sm">Date: {expenseItem.createdDate}</p>
                                 <p className="text-xs sm:text-sm md:text-sm">Category: {expenseItem.category}</p>
-                                <p className="text-xs sm:text-sm md:text-sm">Ammount {expenseItem.amount}</p>
-                                <button className="rounded-sm text-sm justify-center gap-2 items-center flex flex-row py-2 w-full sm:w-35 mt-2 bg-indigo-600 text-white">
-                                    View <ChevronRightIcon className="w-5 h-5"/>
-                                </button>
+                                <p className="text-xs sm:text-sm md:text-sm">Amount ${expenseItem.amount}</p>
+                                    <button className="rounded-sm text-sm py-1.5 sm:py-2 w-full sm:w-30 mt-3 bg-indigo-600 text-white hover:cursor-pointer hover:bg-white hover:border-3 hover:border-black hover:text-black">
+                                        <Link className="justify-center gap-2 items-center flex flex-row" href={`/dashboard/expenses/${expenseItem.id}/`}>
+                                            View <ChevronRightIcon className="w-5 h-5"/>
+                                        </Link>
+                                    </button>
                             </section>
                         </article>
                     )

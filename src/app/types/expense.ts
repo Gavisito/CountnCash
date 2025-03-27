@@ -3,6 +3,8 @@ export interface Expense {
     name: string;
     category: string;
     description: String;
+    vendor: string;
+    taxable: Boolean;
     additionalNotes: string;
     amount: number;
     createdDate: string;
