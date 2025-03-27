@@ -40,3 +40,11 @@ export async function GET(request: Request, context: { params: Promise<{id: stri
 		NextResponse.json({error: "Expense not found or failed to retireve"}, {status: 404})
 	}
 }
+
+// delete an expense id
+
+
+
+
+
+// updating a expense id information

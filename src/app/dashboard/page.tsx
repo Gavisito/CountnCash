@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Expense } from "@/app/types/expense";
-import axios from "axios"
-import RecentListing from "@/app/components/recentExpenses";
+import RecentListing from "@/app/components/listings/recentExpenses";
 // notes section
 // learning how to assign data type to variables
 // useful source for typescript interface setting in useState ensuring right data type: https://codedamn.com/news/reactjs/usestate-hook-typescript
@@ -15,11 +14,13 @@ export default async function Dashboard() {
     try {
         const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
         // getting geenral expense data
-        const response = await axios.get(`${baseUrl}/api/expenses`);
+        const response = await fetch(`${baseUrl}/api/expenses`,{ cache: 'no-cache'});
 
         // storing data into one variable for better readability
-        const expensesData: Expense[] = response.data.expenses;
+        const jsondata = await response.json();
 
+        const expensesData: Expense[] = jsondata.expenses;
+        
         // setting total number of expense 
         let numExpenses = expensesData.length;
 
@@ -123,15 +124,15 @@ export default async function Dashboard() {
                     <section className="md:grid md:grid-cols-8 flex flex-col gap-3 text-white">
                         <div className="col-span-2 bg-indigo-600 p-5 rounded-lg">
                             <h2 className="text-xl font-bold">Number of Expenses:</h2>
-                            <p className="text-lg">Error Loadding...</p>
+                            <p className="text-lg">Error Loading...</p>
                         </div>
                         <div className="col-span-3 bg-indigo-600 p-5 rounded-lg">
                             <h2 className="text-xl font-bold">Sum of Expenses:</h2>
-                            <p className="text-lg">Error Loadding...</p>
+                            <p className="text-lg">Error Loading...</p>
                         </div>
                         <div className="col-span-3 bg-indigo-600 p-5 rounded-lg">
                             <h2 className="text-xl font-bold">Most Popular Category:</h2>
-                            <p className="text-lg">Error Loadding...</p>
+                            <p className="text-lg">Error Loading...</p>
                         </div>
                     </section>
                     {/*Data Visualization Content*/}
