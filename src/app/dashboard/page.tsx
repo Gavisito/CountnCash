@@ -14,7 +14,7 @@ export default async function Dashboard() {
     try {
         const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
         // getting geenral expense data
-        const response = await fetch(`${baseUrl}/api/expenses`,{ cache: 'no-cache'});
+        const response = await fetch(`${baseUrl}/api/expenses`,{ cache: 'no-store'});
 
         // storing data into one variable for better readability
         const jsondata = await response.json();
