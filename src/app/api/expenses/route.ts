@@ -39,8 +39,8 @@ export async function POST(request: Request) {
         //Expense[] ensures that an array is expected with correct underlying data types
         const expenses: Expense[] = JSON.parse(jsonData);
         
-        //ensuring the id is sequential
-        newExpense.id = expenses.length + 1;
+        //ensuring the id is sequential () previous method didnt consider when record deleted - expense.id + 1
+        newExpense.id = expenses.length ? expenses[expenses.length - 1].id + 1 : 1;
 
         //adding new expense submission into original array
         expenses.push(newExpense);
