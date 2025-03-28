@@ -28,7 +28,7 @@ export default async function ExpensePage() {
 
     } catch {
         return (
-            <div className="h-full bg-white flex flex-col p-3 gap-6">
+            <div className="h-full flex flex-col p-3 gap-6 mt-10">
                 {/*Expense List Page Title*/}
                 <section className="flex flex-row w-full">
                     <h1 className="mt-6 mb-2 text-4xl font-bold">Expense List</h1>

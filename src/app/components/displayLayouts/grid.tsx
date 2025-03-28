@@ -12,8 +12,8 @@ export default function Grid ({ expenses }: GridProp) {
             {
                 expenses.map(expenseItem => {
                     return (
-                        <article key={expenseItem.id} className="border-black border-3 h-auto p-3 sm:p-5 flex flex-col w-full rounded-lg">
-                            <h2 className="text-base font-bold underline sm:text-xl md:text-2xl mb-3"><Link href={`/dashboard/expenses/${expenseItem.id}/`}>{expenseItem.name}</Link></h2>
+                        <article key={expenseItem.id} className="border-black border-3 h-fit p-3 sm:p-5 flex flex-col w-full rounded-lg">
+                            <h2 className="text-lg font-bold underline sm:text-xl md:text-2xl mb-3"><Link href={`/dashboard/expenses/${expenseItem.id}/`}>{expenseItem.name}</Link></h2>
                             <section className="flex flex-col gap-2">
                                 <p className="text-xs sm:text-sm md:text-sm">ID: {expenseItem.id}</p>
                                 <p className="text-xs sm:text-sm md:text-sm">Date: {expenseItem.createdDate}</p>

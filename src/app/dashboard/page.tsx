@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Expense } from "@/app/types/expense";
-import RecentListing from "@/app/components/listings/recentExpenses";
+import ExpenseListing from "@/app/components/listings/expenseListing";
 // notes section
 // learning how to assign data type to variables
 // useful source for typescript interface setting in useState ensuring right data type: https://codedamn.com/news/reactjs/usestate-hook-typescript
@@ -56,7 +56,7 @@ export default async function Dashboard() {
         let recentExpenses = expensesData.splice(-5)
 
         return (
-            <div className="min-h-screen bg-white flex flex-col p-3 gap-6">
+            <div className="h-full flex flex-col p-3 gap-6">
                 {/*page Title*/}
                 <h1 className="mt-6 mb-2 text-4xl font-bold">Overview Dashboard</h1>
 
@@ -104,9 +104,9 @@ export default async function Dashboard() {
                     </section>
                 </article>
                 {/*Recemt Expenese Table 10 Items MAXXXX*/}
-                <article className="flex flex-col pb-6">
+                <article className="flex flex-col pb-6 h-full">
                     <h2 className="mb-3 text-3xl font-bold">Recent Expenses</h2>
-                    <RecentListing expenses={recentExpenses}/>
+                    <ExpenseListing expenses={recentExpenses}/>
                 </article>
             </div>
         );
@@ -114,7 +114,7 @@ export default async function Dashboard() {
     } catch(error) {
         console.log("Error: " + error);
         return (
-            <div className="min-h-screen bg-white flex flex-col p-3 gap-6">
+            <div className="h-full bg-white flex flex-col p-3 gap-6">
                 {/*page Title*/}
                 <h1 className="mt-6 mb-2 text-4xl font-bold">Overview Dashboard</h1>
 

@@ -36,8 +36,8 @@ export default function ExpenseListing({expenses}: expenseProps) {
     }
 
     return (
-        <div className="h-full bg-white flex flex-col gap-6">
-            <article className="flex flex-col gap-5">
+        <div className="h-full flex flex-col gap-6 mb-15">
+            <article className="flex flex-col gap-3">
                 {/*Layout Choices To Displaying Content*/}
                 <section className="flex flex-row gap-5">
                     {/*Display Table Button*/}
@@ -59,7 +59,7 @@ export default function ExpenseListing({expenses}: expenseProps) {
                         </button>
                     </div>
                     <button className="w-10 h-10 hover:cursor-pointer">
-                        <Link href="/dashboard/expenses/">
+                        <Link href="/dashboard/expenses/add">
                             <PlusCircleIcon/> 
                         </Link>
                     </button>
