@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { Expense } from "@/app/types/expense";
 import ExpenseListing from "@/app/components/listings/expenseListing";
+import BarChartComponent from "@/app/components/chartJS/barChart";
+import LineGraphComponent from "@/app/components/chartJS/lineGraph";
 // notes section
 // learning how to assign data type to variables
 // useful source for typescript interface setting in useState ensuring right data type: https://codedamn.com/news/reactjs/usestate-hook-typescript
-// useful source for axios usage https://www.freecodecamp.org/news/how-to-use-axios-with-react/
 // resource for getting keys and values from object: https://www.w3schools.com/jsref/jsref_object_entries.asp
 // refactor to make it habit of making api call in the server and error handling when it does not load
 // also notice on client side, it called the api twice on previous and this solution did it once which is interesting
@@ -20,6 +21,8 @@ export default async function Dashboard() {
         const jsondata = await response.json();
 
         const expensesData: Expense[] = jsondata.expenses;
+
+        let allExpenses = [...expensesData]
         
         // setting total number of expense 
         let numExpenses = expensesData.length;
@@ -53,53 +56,37 @@ export default async function Dashboard() {
             } 
         });
 
-        let recentExpenses = expensesData.splice(-5)
+        const recentExpenses = expensesData.splice(-5)
 
         return (
             <div className="h-full flex flex-col p-3 gap-6">
                 {/*page Title*/}
-                <h1 className="mt-6 mb-2 text-4xl font-bold">Overview Dashboard</h1>
+                <h1 className="mt-6 mb-2 text-4xl font-bold text-indigo-950">Overview Dashboard</h1>
 
                 {/*Dashboard Content*/}
-                <article className="gap-5 flex flex-col-reverse md:flex-col">
+                <article className="gap-10 flex flex-col">
                     {/*Summary content*/}
                     <section className="md:grid md:grid-cols-8 flex flex-col gap-3 text-white">
-                        <div className="col-span-2 bg-indigo-600 p-5 rounded-lg">
+                        <div className="col-span-2 bg-indigo-900 p-5 rounded-lg">
                             <h2 className="text-xl font-bold">Number of Expenses:</h2>
                             <p className="text-lg">{numExpenses}</p>
                         </div>
-                        <div className="col-span-3 bg-indigo-600 p-5 rounded-lg">
+                        <div className="col-span-3 bg-indigo-900 p-5 rounded-lg">
                             <h2 className="text-xl font-bold">Sum of Expenses:</h2>
                             <p className="text-lg">${currentSpending}</p>
                         </div>
-                        <div className="col-span-3 bg-indigo-600 p-5 rounded-lg">
+                        <div className="col-span-3 bg-indigo-900 p-5 rounded-lg">
                             <h2 className="text-xl font-bold">Most Popular Category:</h2>
                             <p className="text-lg">{popular}</p>
                         </div>
                     </section>
                     {/*Data Visualization Content*/}
-                    <section className="sm:grid sm:grid-cols-8 flex flex-col gap-3">
-                        {/*Pie Chart*/}
-                        <div className="w-full rounded-lg col-start-1 col-end-4">
-                            <Image
-                                src="/wordStockIMG.jpg"
-                                width={800}
-                                height={90}
-                                priority
-                                className="w-full h-full rounded-lg"
-                                alt="Microsoft word stock image of accounting documents"
-                            />
+                    <section className="md:grid md:grid-cols-8 flex flex-col gap-5">
+                        <div className="w-full rounded-lg md:col-start-1 md:col-end-5 border-3 border-black rounded-lg p-3">
+                            <LineGraphComponent expenses={allExpenses}/>
                         </div>
-                        {/*Line Chart*/}
-                        <div className="w-full rounded-lg col-start-4 col-end-9">
-                            <Image
-                                src="/wordStockIMG.jpg"
-                                width={800}
-                                height={90}
-                                priority
-                                className="w-full h-full rounded-lg"
-                                alt="Microsoft word stock image of accounting documents"
-                            />
+                        <div className="w-full rounded-lg md:col-start-5 md:col-end-9  border-3 border-black rounded-lg p-3">
+                            <BarChartComponent categories={categoryDict}/>
                         </div>
                     </section>
                 </article>
@@ -163,7 +150,7 @@ export default async function Dashboard() {
                 </article>
                 {/*Recemt Expenese Table 10 Items MAXXXX*/}
                 <article className="flex flex-col pb-6">
-                    <h2 className="mb-3 text-3xl font-bold">Recent Expenses</h2>
+                    <h2 className="mb-3 text-3xl font-bold text-indigo-950">Recent Expenses</h2>
                     <section><p>Error loading recent expenses</p></section>
                 </article>
             </div>

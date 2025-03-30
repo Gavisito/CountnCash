@@ -18,7 +18,7 @@ export default function Features() {
                 />
             </section>
             {/*Dashboard Page Summary*/}
-            <section className="col-start-1 col-end-6 h-auto bg-slate-600 rounded-lg p-5 sm:order-2 space-y-3">
+            <section className="col-start-1 col-end-6 h-auto bg-indigo-600 rounded-lg p-5 sm:order-2 space-y-3">
                 <h2 className="text-2xl font-bold text-white md:text-4xl">A Glance of Your Finances</h2>
                 <p className="text-base text-white md:text-xl">
                     In the dashboard, you can see a summary of finances with:
@@ -44,7 +44,7 @@ export default function Features() {
                 />
             </section>
             {/*Expense List Page Summary*/}
-            <section className="col-span-5 col-start-4 bg-slate-500 h-auto rounded-lg p-5 sm:order-5 space-y-3">
+            <section className="col-span-5 col-start-4 bg-indigo-500 h-auto rounded-lg p-5 sm:order-5 space-y-3">
                 <h2 className="text-2xl font-bold text-white md:text-4xl">Manage Your Expenses</h2>
                 <p className="text-base text-white md:text-xl">
                     On the expense list page, you can view, filter and manage all of your expenses in a table and grid user interface.
@@ -66,7 +66,7 @@ export default function Features() {
                 />
             </section>
             {/*Mentioning The U and D of CRUD (Updating and Deleting)*/}
-            <section className="col-start-1 col-end-6 h-auto bg-slate-400 rounded-lg p-5 sm:order-6 space-y-3">
+            <section className="col-start-1 col-end-6 h-auto bg-indigo-400 rounded-lg p-5 sm:order-6 space-y-3">
                 <h2 className="text-2xl font-bold text-white md:text-4xl">View and Refine Your Expenses</h2>
                 <p className="text-base text-white md:text-xl">
                     In the expense detail page, you can read and modify (edit and delete) the information fields of a specific expense you previously added to ensure everything is accuracte to

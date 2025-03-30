@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Expense } from "@/app/types/expense";
 
-
-
 export default function AddExpensePage() {
 	const router = useRouter();
 	const [formData, setFormData] = useState<Partial<Expense>>({
@@ -30,8 +28,8 @@ export default function AddExpensePage() {
 		try {
             //pass all form field and ensured that the amount is in number data type
 			const dataToSubmit = {...formData, amount: Number(formData.amount)};
-            const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
-			const response = await fetch(`${baseUrl}/api/expenses/`, {
+            //const baseUrl = process.env.NEXT_PUBLIC_APP_URL; commented for phone device testing
+			const response = await fetch(`/api/expenses/`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(dataToSubmit),
@@ -41,7 +39,7 @@ export default function AddExpensePage() {
 				throw new Error("Failed to create expense");
 			}
 
-			router.push(`${baseUrl}/dashboard/expenses/`);
+			router.push(`/dashboard/expenses/`);
 			router.refresh();
 		} catch (error) {
 			console.error("Error creating expense:", error);

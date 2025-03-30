@@ -17,20 +17,9 @@
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "additionalNotes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "amount": 2000,
-        "vendor": "Apple",
+        "vendor": "Apple.Inc",
         "taxable": "No",
         "createdDate": "2025-03-27"
-    },
-    {
-        "id": 7,
-        "name": "Wall Shelves",
-        "category": "Shopping",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "additionalNotes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "amount": 35,
-        "vendor": "Ikea",
-        "taxable": "No",
-        "createdDate": "2025-02-26"
     },
     {
         "id": 9,
@@ -66,14 +55,25 @@
         "createdDate": "2025-03-20"
     },
     {
-        "name": "Netflix subscription",
-        "category": "Shopping",
-        "description": "to watch movies and my favourite shows",
-        "vendor": "Netflix",
+        "name": "Light bill",
+        "category": "Utility",
+        "description": "light for house",
+        "vendor": "Dominion",
         "taxable": "No",
         "additionalNotes": "N/A",
-        "amount": 9,
+        "amount": 20,
         "createdDate": "2025-03-18",
-        "id": 13
+        "id": 14
+    },
+    {
+        "name": "Chipotle",
+        "category": "Food",
+        "description": "to eat food",
+        "vendor": "Chipotle",
+        "taxable": "No",
+        "additionalNotes": "N/A",
+        "amount": 13,
+        "createdDate": "2025-01-13",
+        "id": 15
     }
 ]

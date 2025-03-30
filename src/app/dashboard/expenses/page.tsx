@@ -21,7 +21,7 @@ export default async function ExpensePage() {
         return (
             <div className="h-full bg-white flex flex-col p-3 gap-6">
                 {/*Expense List Page Title*/}
-                <h1 className="mt-6 mb-2 text-4xl font-bold">Expense List</h1>
+                <h1 className="mt-6 mb-2 text-4xl font-bold text-indigo-950">Expense List</h1>
                 <ExpenseListing expenses={expensesData}/>
             </div>
         );
@@ -31,7 +31,7 @@ export default async function ExpensePage() {
             <div className="h-full flex flex-col p-3 gap-6 mt-10">
                 {/*Expense List Page Title*/}
                 <section className="flex flex-row w-full">
-                    <h1 className="mt-6 mb-2 text-4xl font-bold">Expense List</h1>
+                    <h1 className="mt-6 mb-2 text-4xl font-bold text-indigo-950">Expense List</h1>
                     <button className="w-full"> 
                         <Link href="/dashboard/expenses/">
                             <PlusCircleIcon className="w-5 h-5 bg-black"/>

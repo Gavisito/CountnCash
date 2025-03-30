@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="flex flex-col bg-indigo-600 text-white pt-10 pb-4 px-5 gap-7">
+        <footer className="flex flex-col bg-indigo-950 text-white pt-10 pb-4 px-5 gap-7">
             <section className="flex flex-col sm:flex-row justify-between gap-8">
                 {/*App Icon Stuff*/}
                 <div className="flex flex-row gap-2 items-center">

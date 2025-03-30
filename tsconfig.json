@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/expenses/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/expenses/route.js", "src/app/components/chartJS/barChart.tsx", "src/app/components/chartJS/lineGraph.tsx"],
   "exclude": ["node_modules"]
 }

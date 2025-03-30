@@ -29,8 +29,8 @@ export default function EditExpensePage({ params }: ExpenseDetailsProps) {
   	useEffect(() => {
 		const fetchExpense = async () => {
 			try {
-				const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
-				const response = await fetch(`${baseUrl}/api/expenses/${expenseId}`);
+				//const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+				const response = await fetch(`/api/expenses/${expenseId}`);
 				if (!response.ok) {
 					throw new Error("Failed to fetch expense");
 				}
@@ -57,8 +57,8 @@ export default function EditExpensePage({ params }: ExpenseDetailsProps) {
 		try {
 			//pass all form field and ensured that the amount is in number data type
 			const dataToSubmit = {...formData, id: expenseId, amount: Number(formData.amount)};
-			const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
-			const response = await fetch(`${baseUrl}/api/expenses/${expenseId}`, {
+			//const baseUrl = process.env.NEXT_PUBLIC_APP_URL;  commented on for phone device testing
+			const response = await fetch(`/api/expenses/${expenseId}`, {
 				method: "PUT",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(dataToSubmit),
@@ -68,7 +68,7 @@ export default function EditExpensePage({ params }: ExpenseDetailsProps) {
 				throw new Error("Failed to update expense");
 			}
 
-			router.push(`${baseUrl}/dashboard/expenses/${expenseId}`);
+			router.push(`/dashboard/expenses/${expenseId}`);
 			router.refresh();
 		} catch (error) {
 			console.error("Error updating expense:", error);
@@ -78,7 +78,7 @@ export default function EditExpensePage({ params }: ExpenseDetailsProps) {
 	return (
 		<main className=" flex flex-col px-3 py-10 gap-6 w-full md:grid md:grid-cols-6">
 			<section className="col-span-2 md:bg-indigo-600 h-full rounded-xl flex md:justify-center md:p-5">
-				<h1 className="text-4xl md:text-6xl font-bold text-black md:text-white mt-10">Add Expense</h1>
+				<h1 className="text-4xl md:text-6xl font-bold text-black md:text-white mt-10">Edit Expense</h1>
 			</section>
 			<section className="flex flex-col col-span-4">
 				<form onSubmit={handleSubmit} className="space-y-8 bg-white rounded-lg">

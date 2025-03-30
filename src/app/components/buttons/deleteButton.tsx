@@ -14,8 +14,8 @@ export default function DeleteButton({expenseId}: DeleteButtonProps) {
     // delete function based on url expense id
     const handleDelete = async () => {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
-        const response = await fetch(`${baseUrl}/api/expenses/${expenseId}`, {method: "DELETE",});
+        //const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
+        const response = await fetch(`/api/expenses/${expenseId}`, {method: "DELETE",});
   
         if (!response.ok) {
           throw new Error(`Failed to delete expense: ${response.status}`);
