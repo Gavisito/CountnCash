@@ -8,7 +8,7 @@
         "amount": 300,
         "vendor": "Exxon",
         "taxable": "Yes",
-        "createdDate": "03-16-2025"
+        "createdDate": "2025-03-16"
     },
     {
         "id": 6,
@@ -30,7 +30,7 @@
         "amount": 35,
         "vendor": "Ikea",
         "taxable": "No",
-        "createdDate": "02/26/2025"
+        "createdDate": "2025-02-26"
     },
     {
         "id": 9,
@@ -40,7 +40,8 @@
         "additionalNotes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "taxable": "No",
         "amount": 35,
-        "createdDate": "12/12/2023"
+        "createdDate": "2023-12-12",
+        "vendor": "Amazon"
     },
     {
         "id": 10,
@@ -50,7 +51,8 @@
         "additionalNotes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "taxable": "No",
         "amount": 35,
-        "createdDate": "12/12/2023"
+        "createdDate": "2025-01-01",
+        "vendor": "Best Buy"
     },
     {
         "id": 12,
@@ -58,10 +60,10 @@
         "category": "Car",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "additionalNotes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "amount": 90,
+        "amount": 65,
         "vendor": "Exxon",
         "taxable": "No",
-        "createdDate": "03-11-2025"
+        "createdDate": "2025-03-20"
     },
     {
         "name": "Netflix subscription",
@@ -70,7 +72,7 @@
         "vendor": "Netflix",
         "taxable": "No",
         "additionalNotes": "N/A",
-        "amount": 6,
+        "amount": 9,
         "createdDate": "2025-03-18",
         "id": 13
     }

@@ -76,7 +76,7 @@ export default function EditExpensePage({ params }: ExpenseDetailsProps) {
 	};
 
 	return (
-		<main className=" flex flex-col px-3 py-10 gap-6 w-full sm:grid sm:grid-cols-6">
+		<main className=" flex flex-col px-3 py-10 gap-6 w-full md:grid md:grid-cols-6">
 			<section className="col-span-2 md:bg-indigo-600 h-full rounded-xl flex md:justify-center md:p-5">
 				<h1 className="text-4xl md:text-6xl font-bold text-black md:text-white mt-10">Add Expense</h1>
 			</section>
