@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PencilSquareIcon, TrashIcon, ShoppingCartIcon, ChevronLeftIcon } from "@heroicons/react/24/outline"; 
+import { PencilSquareIcon, ChevronLeftIcon } from "@heroicons/react/24/outline"; 
 import { Expense } from "@/app/types/expense";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -45,18 +45,18 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
         function setCategoryIMG() {
             switch (expense.category) {
                 case "Shopping": 
-                    return <Image src="/shopping.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of accounting documents"/>
+                    return <Image src="/shopping.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image ofshopping image"/>
                     
                 case "Car":
-                    return <Image src="/car.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of accounting documents"/>
+                    return <Image src="/car.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of a car"/>
         
                 case "Food":
-                    return <Image src="/food.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of accounting documents"/>
+                    return <Image src="/food.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of food"/>
     
                 case "Utility":
-                    return <Image src="/utility.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of accounting documents"/>
+                    return <Image src="/utility.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of utility by doria morgan"/>
                 default:
-                    return <ShoppingCartIcon width={800} height={100} className="w-full h-full"/>
+                    return <Image src="/shopping.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of shopping image"/>
             }
         }
 
@@ -102,7 +102,7 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
                                 <ul className="col-span-1 h-full space-y-5">
                                     <li className="px-3 py-6 bg-indigo-500 rounded-lg">Created Date: {expense.createdDate}</li>
                                     <li className="px-3 py-6 bg-indigo-500 rounded-lg">Category: {expense.category}</li>
-                                    <li className="px-3 py-6 bg-indigo-500 rounded-lg">Taxable: {expense.taxable ? "Taxable" : "Non-Taxable"}</li>
+                                    <li className="px-3 py-6 bg-indigo-500 rounded-lg">Taxable: {expense.taxable}</li>
                                 </ul>
                             </section>
                         </section>
