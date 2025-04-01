@@ -55,17 +55,6 @@
         "createdDate": "2025-03-20"
     },
     {
-        "name": "Light bill",
-        "category": "Utility",
-        "description": "light for house",
-        "vendor": "Dominion",
-        "taxable": "No",
-        "additionalNotes": "N/A",
-        "amount": 20,
-        "createdDate": "2025-03-18",
-        "id": 14
-    },
-    {
         "name": "Zuchini Pupusas",
         "category": "Food",
         "description": "Bought pupusa from a local family business",
