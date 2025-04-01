@@ -15,6 +15,7 @@ export default function BarChartComponent({categories}: CategoriesProp) {
 	//list of label and values for dynamic update when user add or removes an expense over time
 	const categoryLabels = Object.keys(categories);
 	const categoryValues = Object.values(categories);
+	
 
 	const data = {
 		labels: categoryLabels,

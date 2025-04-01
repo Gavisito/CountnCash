@@ -1,9 +1,9 @@
 "use client";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Legend, } from "chart.js";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Legend, Tooltip } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { Expense } from "@/app/types/expense";
 
-ChartJS.register(CategoryScale, LineElement, LinearScale, PointElement, Title, Legend);
+ChartJS.register(CategoryScale, LineElement, LinearScale, PointElement, Title, Legend, Tooltip);
 
 interface ExpenseProp {
 	expenses: Expense[]
