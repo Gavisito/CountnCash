@@ -1,8 +1,8 @@
 "use client";
-import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Legend} from 'chart.js';
+import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Legend, Tooltip} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
   
-ChartJS.register( CategoryScale, LinearScale, BarElement, Title, Legend);
+ChartJS.register( CategoryScale, LinearScale, BarElement, Title, Legend, Tooltip);
 
 //notes section
 // intersted and fun to pass data into the visualization by mkaing arrays

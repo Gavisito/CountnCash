@@ -6,7 +6,7 @@
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "additionalNotes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "amount": 300,
-        "vendor": "Exxon",
+        "vendor": "Shirlington Exxon",
         "taxable": "Yes",
         "createdDate": "2025-03-16"
     },
@@ -66,14 +66,14 @@
         "id": 14
     },
     {
-        "name": "Chipotle",
+        "name": "Zuchini Pupusas",
         "category": "Food",
-        "description": "to eat food",
-        "vendor": "Chipotle",
+        "description": "Bought pupusa from a local family business",
+        "vendor": "Pupuseria",
         "taxable": "No",
         "additionalNotes": "N/A",
-        "amount": 13,
-        "createdDate": "2025-01-13",
-        "id": 15
+        "amount": 25,
+        "createdDate": "2025-03-30",
+        "id": 16
     }
 ]
