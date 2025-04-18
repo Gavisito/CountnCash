@@ -64,5 +64,16 @@
         "amount": 25,
         "createdDate": "2025-03-30",
         "id": 16
+    },
+    {
+        "name": "toothbrusg",
+        "category": "shopping",
+        "description": "blah",
+        "vendor": "target",
+        "taxable": "no",
+        "additionalNotes": "n/a",
+        "amount": 20,
+        "createdDate": "2025-04-09",
+        "id": 17
     }
 ]
