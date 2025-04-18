@@ -55,17 +55,6 @@
         "createdDate": "2025-03-20"
     },
     {
-        "name": "Zuchini Pupusas",
-        "category": "Food",
-        "description": "Bought pupusa from a local family business",
-        "vendor": "Pupuseria",
-        "taxable": "No",
-        "additionalNotes": "N/A",
-        "amount": 25,
-        "createdDate": "2025-03-30",
-        "id": 16
-    },
-    {
         "name": "toothbrusg",
         "category": "shopping",
         "description": "blah",

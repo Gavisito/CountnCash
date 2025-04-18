@@ -1,5 +1,6 @@
 "use client";
 import { HomeIcon, ChartBarIcon, CurrencyDollarIcon, TableCellsIcon } from "@heroicons/react/24/outline"; 
+import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function Navigation() {
@@ -16,6 +17,12 @@ export default function Navigation() {
 					<li className="hover:bg-indigo-400 rounded-lg p-1"><Link href="/"><HomeIcon className="w-6 h-6"/></Link></li>
 					<li className="hover:bg-indigo-400 rounded-lg p-1"><Link href="/dashboard"><ChartBarIcon className="w-6 h-6"/></Link></li>
 					<li className="hover:bg-indigo-400 rounded-lg p-1"><Link href="/dashboard/expenses"><TableCellsIcon className="w-6 h-6"/></Link></li>
+					<SignedIn>
+                    	<UserButton/>
+					</SignedIn>
+					<SignedOut>
+						<SignInButton mode="modal"/>
+					</SignedOut>
 				</ul>
 			</div>
 		</nav>
