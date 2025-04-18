@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import fs from 'fs'
-import path from "path"
+//import fs from 'fs'
+//import path from "path"
+import clientPromise from "@/lib/mongodb";
 import { Expense } from "@/app/types/expense";
 import { auth } from '@clerk/nextjs/server';
 
@@ -11,16 +12,19 @@ import { auth } from '@clerk/nextjs/server';
 // Useful Source on fs docs: https://nodejs.org/dist/latest-v10.x/docs/api/fs.html
 
 //setting up file that will be read and written to
-const filePath = path.join(process.cwd(), "data", "/expenses.json");
+//const filePath = path.join(process.cwd(), "data", "/expenses.json");
 
 //fetching expenses.json data
 export async function GET() {
     try {
         //background reading
-        const jsonData = await fs.promises.readFile(filePath, "utf-8");
-
+        //const jsonData = await fs.promises.readFile(filePath, "utf-8");
         //Expense[] ensures that an array is expected with correct underlying data types
-        const expenses: Expense[] = JSON.parse(jsonData);
+        //const expenses: Expense[] = JSON.parse(jsonData);
+
+        const client = await clientPromise;
+        const db = client.db("expensesDB");
+        const expenses = await db.collection("expenses").find({}).toArray();
 
         //send success json
         return NextResponse.json({expenses, message: "fectched expenses.json data successful"}, { status: 200 });
@@ -40,24 +44,41 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
         //incoming expenses postman/form submission expecting a new expense obj to add to json array and enuring field are correct types of data
-        const newExpense: Expense = await request.json()
+        //const newExpense: Expense = await request.json()
 
         //fecthing current expense.json array
-        const jsonData = await fs.promises.readFile(filePath, "utf-8");
+        //const jsonData = await fs.promises.readFile(filePath, "utf-8");
         //Expense[] ensures that an array is expected with correct underlying data types
-        const expenses: Expense[] = JSON.parse(jsonData);
+        //const expenses: Expense[] = JSON.parse(jsonData);
         
         //ensuring the id is sequential () previous method didnt consider when record deleted - expense.id + 1
-        newExpense.id = expenses.length ? expenses[expenses.length - 1].id + 1 : 1;
+        //newExpense.id = expenses.length ? expenses[expenses.length - 1].id + 1 : 1;
 
         //adding new expense submission into original array
-        expenses.push(newExpense);
+        //expenses.push(newExpense);
+
+
+        const newExpense: Omit<Expense, "id"> = await request.json();
+        const client = await clientPromise;
+        const db = client.db("expensesDB");
+
+        const lastExpense = await db
+        .collection("expenses")
+        .findOne({}, {sort: {id: -1}});
+        const nextId = lastExpense ? lastExpense.id + 1 : 1;
+
+        const expenseToInsert = {...newExpense, id:nextId};
+        const result = await db.collection("expenses").insertOne(expenseToInsert);
+
+        if (!result.acknowledged){
+            throw new Error("failed to insert expense")
+        }
 
         //updating the expense.json file by adding new expense information at the end
         //4 spaces is nicer in my opinion. prettier
-        await fs.promises.writeFile(filePath, JSON.stringify(expenses, null, 4), "utf-8")
+        //await fs.promises.writeFile(filePath, JSON.stringify(expenses, null, 4), "utf-8")
 
-        return NextResponse.json({expenses, message: "expense successfully added"}, { status: 200 });
+        return NextResponse.json({expenseToInsert, message: "expense successfully added"}, { status: 200 });
 
     } catch (error) {
         return NextResponse.json({ error: 'Failed to update expense data' }, {status: 500 });
