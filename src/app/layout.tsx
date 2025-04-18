@@ -28,10 +28,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
           {/*Global Navigation UI*/}
           <Navigation/>
-          {children}
+          <main className="flex-grow">
+            {children}
+          </main>
           {/*Global Footer UI*/}
           <Footer/>
         </body>
