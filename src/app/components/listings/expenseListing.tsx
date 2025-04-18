@@ -6,6 +6,7 @@ import Grid from "@/app/components/displayLayouts/grid";
 import List from "@/app/components/displayLayouts/list"
 import Link from "next/link";
 import { TableCellsIcon, QueueListIcon, Squares2X2Icon, PlusCircleIcon } from "@heroicons/react/24/outline"; 
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 // notes section:
 // componentize becuase i was thinking of placing this into the dash board page and habits of separating api and interactivity compoenents
@@ -58,11 +59,14 @@ export default function ExpenseListing({expenses}: expenseProps) {
                             <Squares2X2Icon/>
                         </button>
                     </div>
-                    <button className="w-10 h-10 hover:cursor-pointer">
-                        <Link href="/dashboard/expenses/add">
-                            <PlusCircleIcon/> 
-                        </Link>
-                    </button>
+                    {/*Only will pop up if they are logged into an account*/}
+                    <SignedIn>
+                        <button className="w-10 h-10 hover:cursor-pointer">
+                            <Link href="/dashboard/expenses/add">
+                                <PlusCircleIcon/> 
+                            </Link>
+                        </button>
+                    </SignedIn>
                 </section>
                 <section>
                     {/* Display table, list stack, or grid layout here dynamically based on user choicing upong clicking buttons*/}

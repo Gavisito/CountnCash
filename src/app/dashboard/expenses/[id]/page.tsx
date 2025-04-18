@@ -4,6 +4,7 @@ import { Expense } from "@/app/types/expense";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import DeleteButton from "@/app/components/buttons/deleteButton";
+import { SignedIn } from "@clerk/nextjs";
 // notes section
 // refactor was interesting was typscirpt params
 // cool to move return of webpage layout into try block. this helped with being able to use the expense variable without use usestate which i tried to do initially
@@ -71,12 +72,17 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
                     <section className="flex flex-row justify-between items-center md:hidden gap-4">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl underline font-bold">{expense.name}</h1>
                         <section className="flex gap-2 items-center">
-                            <button className="w-8 h-8 hover: cursor-pointer">
-                                <Link href={`/dashboard/expenses/${expense.id}/edit`}>
-                                    <PencilSquareIcon/>
-                                </Link>
-                            </button>
-                            <DeleteButton expenseId={expense.id}/>
+                            {/*The edit and delete button will only show when they are logged into an account*/}
+                            <SignedIn>
+                                <button className="w-8 h-8 hover: cursor-pointer">
+                                    <Link href={`/dashboard/expenses/${expense.id}/edit`}>
+                                        <PencilSquareIcon/>
+                                    </Link>
+                                </button>
+                            </SignedIn>
+                            <SignedIn>
+                                <DeleteButton expenseId={expense.id}/>
+                            </SignedIn>
                         </section>
                     </section>
                     <section className="flex flex-col md:grid md:grid-cols-8 gap-5">
@@ -85,12 +91,16 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
                             <section className="hidden md:flex justify-between items-center">
                                 <h1 className="text-2xl sm:text-3xl md:text-5xl underline">{expense.name}</h1>
                                 <section className="flex gap-5 items-center">
-                                <button className="w-8 h-8 hover: cursor-pointer">
-                                    <Link href={`/dashboard/expenses/${expense.id}/edit`}>
-                                        <PencilSquareIcon/>
-                                    </Link>
-                                </button>
-                                    <DeleteButton expenseId={expense.id}/>
+                                    <SignedIn>
+                                        <button className="w-8 h-8 hover: cursor-pointer">
+                                            <Link href={`/dashboard/expenses/${expense.id}/edit`}>
+                                                <PencilSquareIcon/>
+                                            </Link>
+                                        </button>
+                                    </SignedIn>
+                                    <SignedIn>
+                                        <DeleteButton expenseId={expense.id}/>
+                                    </SignedIn>
                                 </section>
                             </section>
                             <section className="grid grid-cols-2 gap-5 text-white font-bold text-sm">

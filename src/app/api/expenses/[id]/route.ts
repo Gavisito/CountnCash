@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { Expense } from "@/app/types/expense";
+import { auth } from '@clerk/nextjs/server';
 
 //notes section
 //assumign context is what getss specific information of a url that it is being requested such as specific id as seen below
@@ -37,13 +38,19 @@ export async function GET(request: Request, context: { params: Promise<{id: stri
 		return NextResponse.json(expense, { status: 200 });
 
 	} catch {
-		NextResponse.json({error: "Expense not found or failed to retireve"}, {status: 404})
+		return NextResponse.json({error: "Expense not found or failed to retireve"}, {status: 404})
 	}
 }
 
 // delete an expense id
 export async function DELETE(request: Request, context: { params: Promise<{id: string}> }) {
 	try {
+		 //additional security measure if they were about by pass UI security and throuhg something like Postman
+		const { userId } = await auth();
+
+        if (!userId) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
 		//getting the id of the expense card that was clicked from url
 		const {id} = await context.params;
 		//turning it into a number
@@ -82,6 +89,12 @@ export async function DELETE(request: Request, context: { params: Promise<{id: s
 // updating a expense id information
 export async function PUT(request: Request, context: { params: Promise<{id: string}> }) {
 	try {
+		 //additional security measure if they were about by pass UI security and throuhg something like Postman
+		const { userId } = await auth();
+
+        if (!userId) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
 		//getting the id of the expense card that was clicked from url
 		const {id} = await context.params;
 		//turning it into a number

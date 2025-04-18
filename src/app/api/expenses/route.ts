@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import fs from 'fs'
 import path from "path"
 import { Expense } from "@/app/types/expense";
+import { auth } from '@clerk/nextjs/server';
+
 // my notes section:
 // attempting to refactor and explore my style
 // using fs.promise for async functionality to place read and writing file in the background.
@@ -31,6 +33,12 @@ export async function GET() {
 //adding new expenses information into the expense.json
 export async function POST(request: Request) {
     try {
+        //additional security measure if they were about by pass UI security and throuhg something like Postman
+        const { userId }= await auth();
+
+        if (!userId) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
         //incoming expenses postman/form submission expecting a new expense obj to add to json array and enuring field are correct types of data
         const newExpense: Expense = await request.json()
 
