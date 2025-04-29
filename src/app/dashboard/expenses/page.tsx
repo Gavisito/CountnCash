@@ -22,7 +22,7 @@ export default async function ExpensePage() {
         // storing data into one variable for better readability
         const jsondata = await response.json();
 
-        const expensesData: Expense[] = jsondata.expenses;
+        const expensesData: Expense[] = await jsondata.expenses;
         
         //setting fecthed data in expense variable for display
         return (

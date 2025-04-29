@@ -21,7 +21,7 @@ export default async function Dashboard() {
         // storing data into one variable for better readability
         const jsondata = await response.json();
 
-        const expensesData: Expense[] = jsondata.expenses;
+        const expensesData: Expense[] = await jsondata.expenses;
 
         let allExpenses = [...expensesData]
         
