@@ -11,7 +11,7 @@ import LineGraphComponent from "@/app/components/chartJS/lineGraph";
 // also notice on client side, it called the api twice on previous and this solution did it once which is interesting
 
 async function getDashboardExpense() {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
     // getting geenral expense data
     const response = await fetch(`${baseUrl}/api/expenses`);
 
