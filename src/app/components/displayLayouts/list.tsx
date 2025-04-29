@@ -20,7 +20,7 @@ export default function List({ expenses }: ListProp) {
                                         <Link className="justify-center gap-2 items-center flex flex-row" href={`/dashboard/expenses/${expenseItem.id}/`}>
                                             View <ChevronRightIcon className="w-5 h-5"/>
                                         </Link>
-                                    </button> {//test}
+                                    </button>
                             </summary>
                             <ul className="list-inside p-5 text-base">
                                 <li className="list-disc">ID: {expenseItem.id}</li>

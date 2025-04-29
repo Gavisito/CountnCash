@@ -10,18 +10,22 @@ import LineGraphComponent from "@/app/components/chartJS/lineGraph";
 // refactor to make it habit of making api call in the server and error handling when it does not load
 // also notice on client side, it called the api twice on previous and this solution did it once which is interesting
 
+async function getDashboardExpense() {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
+    // getting geenral expense data
+    const response = await fetch(`${baseUrl}/api/expenses`,{ cache: 'no-store'});
+
+    // storing data into one variable for better readability
+    const jsondata = await response.json();
+
+    const expensesData: Expense[] = jsondata.expenses;
+    return expensesData
+}
+
 export default async function Dashboard() {
     // fetching api data and setting up dynamic dashboard info num expenses, sum of expenses, and popular category
     try {
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
-        // getting geenral expense data
-        const response = await fetch(`${baseUrl}/api/expenses`,{ cache: 'no-store'});
-
-        // storing data into one variable for better readability
-        const jsondata = await response.json();
-
-        const expensesData: Expense[] = jsondata.expenses;
-
+        const expensesData = await getDashboardExpense()
         let allExpenses = [...expensesData]
         
         // setting total number of expense 
