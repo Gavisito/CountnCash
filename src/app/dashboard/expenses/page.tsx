@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { Expense } from "@/app/types/expense";
 import ExpenseListing from "@/app/components/listings/expenseListing";
 import Link from "next/link";
