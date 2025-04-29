@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import { Expense } from "@/app/types/expense";
 import ExpenseListing from "@/app/components/listings/expenseListing";
 import Link from "next/link";
@@ -8,35 +7,28 @@ import { notFound } from "next/navigation";
 // refactored the code so i get a habit of maing server side rendering, especially for api data and so if the data does not loading up there is a fail safe compoennt when it doesnt load properly
 // this helped me undertsand when to use client or server side rendering a lot. 
 
-async function getExpenses() {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
-    // getting geenral expense data
-    const response = await fetch(`${baseUrl}/api/expenses`);
-
-    if (!response.ok){
-        throw new Error("Error fetching data");
-        notFound()
-    }
-
-    // storing data into one variable for better readability
-    const jsondata = await response.json();
-
-    const expensesData: Expense[] = jsondata.expenses;
-    
-    return expensesData
-}
-
-
 export default async function ExpensePage() {
-    const expenses = await getExpenses()
     try {
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
+        // getting geenral expense data
+        const response = await fetch(`${baseUrl}/api/expenses`);
+
+        if (!response.ok){
+            throw new Error("Error fetching data");
+            notFound()
+        }
+
+        // storing data into one variable for better readability
+        const jsondata = await response.json();
+
+        const expensesData: Expense[] = jsondata.expenses;
         
         //setting fecthed data in expense variable for display
         return (
             <div className="h-full bg-white flex flex-col p-3 gap-6">
                 {/*Expense List Page Title*/}
                 <h1 className="mt-6 mb-2 text-4xl font-bold text-indigo-950">Expense List</h1>
-                <ExpenseListing expenses={expenses}/>
+                <ExpenseListing expenses={expensesData}/>
             </div>
         );
 
