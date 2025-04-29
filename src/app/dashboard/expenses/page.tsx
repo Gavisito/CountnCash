@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { Expense } from "@/app/types/expense";
 import ExpenseListing from "@/app/components/listings/expenseListing";
 import Link from "next/link";
@@ -64,7 +65,7 @@ export default async function ExpensePage() {
                                 </button>
                             </div>
                             <button className="rounded-sm text-sm hover:cursor-pointer">
-                                <Link className="" href="/dashboard/expense/">
+                                <Link className="" href="/dashboard/expenses/add">
                                     <PlusCircleIcon className="w-10 h-10"/> 
                                 </Link>
                             </button>
