@@ -41,7 +41,7 @@ export async function GET(request: Request, context: { params: Promise<{id: stri
 
 		if (!expense) {
 			return NextResponse.json({ error: "Expense not found." }, { status: 404 });
-		  }
+		}
 
 		return NextResponse.json(expense, { status: 200 });
 

@@ -38,10 +38,10 @@ export default async function Dashboard() {
         
         expensesData.forEach((expenseItem) => {
             //sees whether the key exist, if so it add to the key's value count
-            if (categoryDict[expenseItem.category]) {
-                categoryDict[expenseItem.category] += 1;
+            if (categoryDict[expenseItem.category as string]) {
+                categoryDict[expenseItem.category as string] += 1;
             } else { // if its new category then it'll start the count
-                categoryDict[expenseItem.category] = 1;
+                categoryDict[expenseItem.category as string] = 1;
             }
         }); 
 

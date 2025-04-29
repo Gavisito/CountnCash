@@ -7,13 +7,13 @@ interface ListProp {
     expenses: Expense[]
 }
 
-export default function List ({ expenses }: ListProp) {
+export default function List({ expenses }: ListProp) {
     return (
-        <div className="flex flex-col gap-8 mt-6 w-full m-auto">
+        <>
             {
-                expenses.map(expenseItem => {
+                expenses?.map(expenseItem => {
                     return (
-                        <details key={expenseItem.id}>
+                        <details key={expenseItem.id} className="pb-5">
                             <summary className="bg-transparent border-3 border-black rounded-lg p-5 font-bold sm:text-xl text-base flex justify-between items-center gap-3 underline">
                                 {expenseItem.name}
                                     <button className="rounded-sm text-sm py-2 w-25 bg-indigo-600 text-white hover:cursor-pointer hover:bg-white hover:border-3 hover:border-black hover:text-black">
@@ -32,6 +32,6 @@ export default function List ({ expenses }: ListProp) {
                     )
                 })
             }
-        </div>
+        </>
     )
 }
