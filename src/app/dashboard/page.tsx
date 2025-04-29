@@ -13,7 +13,7 @@ import LineGraphComponent from "@/app/components/chartJS/lineGraph";
 async function getDashboardExpense() {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
     // getting geenral expense data
-    const response = await fetch(`${baseUrl}/api/expenses`,{ cache: 'no-store'});
+    const response = await fetch(`${baseUrl}/api/expenses`);
 
     // storing data into one variable for better readability
     const jsondata = await response.json();

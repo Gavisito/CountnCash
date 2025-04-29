@@ -10,7 +10,7 @@ import { notFound } from "next/navigation";
 async function getExpenses() {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
     // getting geenral expense data
-    const response = await fetch(`${baseUrl}/api/expenses`,{ cache: 'no-store'});
+    const response = await fetch(`${baseUrl}/api/expenses`);
 
     if (!response.ok){
         throw new Error("Error fetching data");
