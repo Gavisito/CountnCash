@@ -126,7 +126,8 @@ export async function PUT(
       return NextResponse.json({ error: "Expense not found." }, { status: 404 });
     }
 
-    const updateInfo: Partial<Expense> = { ...expense, ...userRequest }; // avoid trying to overwrite MongoDB's _id
+    const updateInfo: any = { ...expense, ...userRequest };
+    delete updateInfo._id; // avoid trying to overwrite MongoDB's _id
 
     const expenseUpdate = await db
       .collection("expenses")
