@@ -4,6 +4,7 @@ import { Expense } from "@/app/types/expense";
 import ExpenseListing from "@/app/components/listings/expenseListing";
 import BarChartComponent from "@/app/components/chartJS/barChart";
 import LineGraphComponent from "@/app/components/chartJS/lineGraph";
+import clientPromise from "@/lib/mongodb";
 // notes section
 // learning how to assign data type to variables
 // useful source for typescript interface setting in useState ensuring right data type: https://codedamn.com/news/reactjs/usestate-hook-typescript
@@ -14,19 +15,25 @@ import LineGraphComponent from "@/app/components/chartJS/lineGraph";
 export default async function Dashboard() {
     // fetching api data and setting up dynamic dashboard info num expenses, sum of expenses, and popular category
     try {
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
-        // getting geenral expense data
-        const response = await fetch(`${baseUrl}/api/expenses`);
+        const client = await clientPromise;
+        const db = client.db("expensesDB");
+        const expensesData: Expense[] = (await db.collection("expenses").find({}).toArray()).map((doc) => ({
+            id: parseInt(doc.id.toString(), 10),
+            name: doc.name,
+            category: doc.category,
+            description: doc.description,
+            amount: doc.amount,
+            date: doc.date,
+            vendor: doc.vendor || "",
+            taxable: doc.taxable || false,
+            additionalNotes: doc.additionalNotes || "",
+            createdDate: doc.createdDate || new Date(),
+        }));
 
-        // storing data into one variable for better readability
-        const jsondata = await response.json();
-
-        const expensesData: Expense[] = jsondata.expenses;
-
-        let allExpenses = [...expensesData]
+        const allExpenses = [...expensesData]
         
         // setting total number of expense 
-        let numExpenses = expensesData.length;
+        const numExpenses = expensesData.length;
 
         // adding up all the expense item amounts
         let currentSpending = 0;

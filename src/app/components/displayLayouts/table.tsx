@@ -20,7 +20,7 @@ export default function Table({ expenses }: TableProp) {
                 </thead>
                 <tbody className="border-2 border-black">
                     {
-                        expenses.map(expenseItem => {
+                        expenses?.map(expenseItem => {
                             return (
                                 <tr key={expenseItem.id}>
                                     <td className="border-3 border-black text-start p-1 underline decoration-indigo-500 decoration-2"><Link href={`/dashboard/expenses/${expenseItem.id}/`}>{expenseItem.id}</Link></td>

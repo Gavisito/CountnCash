@@ -4,7 +4,7 @@ import { Expense } from "@/app/types/expense";
 import List from "@/app/components/displayLayouts/list";
 
 //receives setSearch useState function to allow updating if the user closes the lightroom to searhc expenses
-export default function Search({ stateChange }: any) {
+export default function Search({ stateChange }: { stateChange: (state: boolean) => void }) {
 	//This stores the input data as the user types away. only collects expense name and checked bbox categoires to send to mongodb to search if applicable
 	const [searchData, setSearchData] = useState<{ name: string; category: string[] }>({
 		name: "", //expense name
@@ -42,11 +42,11 @@ export default function Search({ stateChange }: any) {
 		const baseURL = "/api/search"
 
 		//creating separate collectors of respetive queries for cleanliness
-		let categoryQuery: string[] = [];
+		const categoryQuery: string[] = [];
 		let expenseNameQuery: string = ""
 
 		//query request collection
-		let searchQuery = [];
+		const searchQuery = [];
 
 		// This is the case where if the search bar is not empty then it will be added to the query builder array
 		// Since this is the first checker if it is empty or not, this order allows for it to start at the beginnning every time there is search bar query as seen in most standard url query in my experience
@@ -97,11 +97,11 @@ export default function Search({ stateChange }: any) {
 		const getExpenses = await response.json();
 
 		//only includes category fields, for ease of use and limit unneccary request of unrelated data
-		const expensesCategory: Expense[] = getExpenses.expenses.map((expense: any) => expense.category);
+		const expensesCategory: string[] = getExpenses.expenses.map((expense: Expense) => expense.category);
 		
 		// counting up category and setting the  count for the categories
 		const categoryDict: {[key: string]: number} = {}
-		expensesCategory.forEach((expenseItem: any) => {
+		expensesCategory.forEach((expenseItem: string) => {
 			//sees whether the key exist, if so it add to the key's value count
 			if (categoryDict[expenseItem ]) {
 				categoryDict[expenseItem] += 1;

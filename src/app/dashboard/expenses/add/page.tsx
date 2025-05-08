@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Expense } from "@/app/types/expense";
@@ -66,7 +66,7 @@ export default function AddExpensePage() {
                                 placeholder="Enter expense name"
                             />
                         </label>
-                        <label className="block text-xl">Today's Date
+                        <label className="block text-xl">Todays Date
                             <input
                                 id="createdDate"
                                 name="createdDate"

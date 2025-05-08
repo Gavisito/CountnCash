@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
 
 				// ***IMPORTANT NOTE***
 				// Need to set up index for name and category so it allows for individual search capabilities to the database;
-				// name ->  expenses.createIndex({name:"text"})
+				// name ->  db.expenses.createIndex({name:"text"})
 				// category -> db.expenses.createIndex({category:1});
 
 				// when one or the other is utilized. doesnt require both to be used but can be

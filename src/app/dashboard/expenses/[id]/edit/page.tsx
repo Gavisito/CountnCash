@@ -3,18 +3,14 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Expense } from "@/app/types/expense";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 // notes section
 // need to convert values from form to do proper number calculation always
 
-interface ExpenseDetailsProps {
-  params: {
-	id: string;
-  };
-}
-
-export default function EditExpensePage({ params }: ExpenseDetailsProps) {
+export default function EditExpensePage() {
 	const router = useRouter();
-	const expenseId = parseInt(params.id, 10);
+	const params = useParams();
+	const expenseId = params.id && typeof params.id === "string" ? parseInt(params.id, 10) : NaN;
 	const [formData, setFormData] = useState<Partial<Expense>>({
 		name: "",
 		category: "",
@@ -95,7 +91,7 @@ export default function EditExpensePage({ params }: ExpenseDetailsProps) {
 								placeholder="Enter expense name"
 							/>
 						</label>
-						<label className="block text-xl">Today's Date
+						<label className="block text-xl">Todays Date
 							<input
 								id="createdDate"
 								name="createdDate"

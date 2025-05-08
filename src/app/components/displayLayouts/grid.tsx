@@ -10,7 +10,7 @@ export default function Grid ({ expenses }: GridProp) {
     return (
         <div className="grid grid-cols-2 gap-2 mt-6">
             {
-                expenses.map(expenseItem => {
+                expenses?.map(expenseItem => {
                     return (
                         <article key={expenseItem.id} className="border-black border-3 h-fit p-3 sm:p-5 flex flex-col w-full rounded-lg">
                             <h2 className="text-lg font-bold underline sm:text-xl md:text-2xl mb-3"><Link href={`/dashboard/expenses/${expenseItem.id}/`}>{expenseItem.name}</Link></h2>

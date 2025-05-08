@@ -3,26 +3,27 @@ import { Expense } from "@/app/types/expense";
 import ExpenseListing from "@/app/components/listings/expenseListing";
 import Link from "next/link";
 import { TableCellsIcon, QueueListIcon, Squares2X2Icon, PlusCircleIcon } from "@heroicons/react/24/outline"; 
-import { notFound } from "next/navigation";
+import clientPromise from "@/lib/mongodb";
 // notes section
 // refactored the code so i get a habit of maing server side rendering, especially for api data and so if the data does not loading up there is a fail safe compoennt when it doesnt load properly
 // this helped me undertsand when to use client or server side rendering a lot. 
 
 export default async function ExpensePage() {
     try {
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
-        // getting geenral expense data
-        const response = await fetch(`${baseUrl}/api/expenses`);
-
-        if (!response.ok){
-            throw new Error("Error fetching data");
-            notFound()
-        }
-        //test
-        // storing data into one variable for better readability
-        const jsondata = await response.json();
-
-        const expensesData: Expense[] = jsondata.expenses;
+        const client = await clientPromise;
+        const db = client.db("expensesDB");
+        const expensesData: Expense[] = (await db.collection("expenses").find({}).toArray()).map((doc) => ({
+            id: parseInt(doc.id.toString(), 10),
+            name: doc.name,
+            category: doc.category,
+            description: doc.description,
+            amount: doc.amount,
+            date: doc.date,
+            vendor: doc.vendor || "",
+            taxable: doc.taxable || false,
+            additionalNotes: doc.additionalNotes || "",
+            createdDate: doc.createdDate || new Date(),
+        }));
         
         //setting fecthed data in expense variable for display
         return (

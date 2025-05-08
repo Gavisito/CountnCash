@@ -30,6 +30,7 @@ export async function GET() {
         return NextResponse.json({expenses, message: "fectched expenses.json data successful"}, { status: 200 });
     } catch (error) {
         //if json has bad type and other issues
+        console.error("Error creating expense:", error);
         return NextResponse.json({ error: 'Failed to read expense data' }, {status: 500 });
     }
 }
@@ -81,6 +82,7 @@ export async function POST(request: Request) {
         return NextResponse.json({expenseToInsert, message: "expense successfully added"}, { status: 200 });
 
     } catch (error) {
+        console.error("Error creating expense:", error);
         return NextResponse.json({ error: 'Failed to update expense data' }, {status: 500 });
     }
 }

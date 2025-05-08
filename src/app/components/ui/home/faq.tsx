@@ -14,8 +14,8 @@ export default function FAQ() {
                         expense of your choosing, then, find and click the field you want update, fill out the form and click submit and BOOM! All updated.
                     </p>
                     <p className="bg-white p-3 text-base sm:text-xl">
-                        Another neat feature, I think you'll love is being able to change the viewing of the expense list page. The table is the default, but if you click on 
-                        the icon that looks like a bookshelf, you'll get a card stack, clicking on the window icon will display a 2x2 grid view of your expenses.
+                        Another neat feature, I think youll love is being able to change the viewing of the expense list page. The table is the default, but if you click on 
+                        the icon that looks like a bookshelf, youll get a card stack, clicking on the window icon will display a 2x2 grid view of your expenses.
                     </p>
                     <p className="bg-white p-3 text-base sm:text-xl">
                         Lastly, the <Link href="/dashboard">Overview Dashboard</Link>, I have integrated a Chart.js to provide a Data visualization to help you see

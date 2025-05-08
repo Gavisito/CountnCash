@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import DeleteButton from "@/app/components/buttons/deleteButton";
 import { SignedIn } from "@clerk/nextjs";
+import clientPromise from "@/lib/mongodb";
 // notes section
 // refactor was interesting was typscirpt params
 // cool to move return of webpage layout into try block. this helped with being able to use the expense variable without use usestate which i tried to do initially
@@ -17,33 +18,44 @@ interface ExpenseDetailsProps {
   }
 
 export default async function DetailPage({ params }: ExpenseDetailsProps) {
-    // setting up the id by extracting the id from the url being request
     const id = (await params).id;
-
-    // making it into a number for usage
     const expenseId = parseInt(id, 10);
-
-    // if the expense id is invalid such as null then itll go to the not found screen
+  
     if (isNaN(expenseId)) {
-        notFound();
+      notFound();
     }
-
-     // Gettting the base url from the local envrionemnt
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || '';
 
     // if all is good, shows the layout, if not then the not found oage wwill show
     try {
-        // fetching the expense id data
-        const response = await fetch(`${baseUrl}/api/expenses/${expenseId}`, { next: { revalidate: 0 } });
+        const client = await clientPromise;
+        const db = client.db("expensesDB");
+    
+        const expenseDoc = await db
+          .collection("expenses")
+          .findOne({ id: expenseId });
 
-        // another check to see if data is being recieved, if not then itll go to the not found page
-        if (!response.ok) {
-            notFound();
+        const expense: Expense | null = expenseDoc
+          ? {
+              id: expenseDoc.id,
+              name: expenseDoc.name,
+              category: expenseDoc.category,
+              description: expenseDoc.description,
+              amount: expenseDoc.amount,
+              vendor: expenseDoc.vendor,
+              createdDate: expenseDoc.createdDate,
+              taxable: expenseDoc.taxable,
+              additionalNotes: expenseDoc.additionalNotes,
+            }
+          : null;
+    
+        if (!expense) {
+          notFound();
         }
-        // storing the object of th expense id into a variable for front end usage
-        const expense: Expense = await response.json();
 
         function setCategoryIMG() {
+            if (!expense) {
+                return null;
+            }
             switch (expense.category) {
                 case "Shopping": 
                     return <Image src="/shopping.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image ofshopping image"/>
@@ -84,6 +96,7 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
                                 <DeleteButton expenseId={expense.id}/>
                             </SignedIn>
                         </section>
+                        {expense && setCategoryIMG()}
                     </section>
                     <section className="flex flex-col md:grid md:grid-cols-8 gap-5">
                         {setCategoryIMG()}

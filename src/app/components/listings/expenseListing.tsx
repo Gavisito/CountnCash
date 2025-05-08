@@ -7,7 +7,7 @@ import List from "@/app/components/displayLayouts/list"
 import Link from "next/link";
 import Search from '@/app/components/search/search'
 import { TableCellsIcon, QueueListIcon, Squares2X2Icon, PlusCircleIcon, MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline"; 
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn } from "@clerk/nextjs";
 
 // notes section:
 // componentize becuase i was thinking of placing this into the dash board page and habits of separating api and interactivity compoenents
