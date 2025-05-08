@@ -81,7 +81,7 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
                     </Link>
                 </button>
                 <article className="flex flex-col px-3 py-3 mt-2 space-y-8">
-                    <section className="flex flex-row justify-between items-center md:hidden gap-4">
+                    <section className="hidden md:flex flex-row justify-between items-center gap-4">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl underline font-bold">{expense.name}</h1>
                         <section className="flex gap-2 items-center">
                             {/*The edit and delete button will only show when they are logged into an account*/}
@@ -96,12 +96,11 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
                                 <DeleteButton expenseId={expense.id}/>
                             </SignedIn>
                         </section>
-                        {expense && setCategoryIMG()}
+                        {setCategoryIMG()}
                     </section>
                     <section className="flex flex-col md:grid md:grid-cols-8 gap-5">
-                        {setCategoryIMG()}
                         <section className="col-span-5 space-y-5">
-                            <section className="hidden md:flex justify-between items-center">
+                            <section className="md:hidden flex justify-between items-center">
                                 <h1 className="text-2xl sm:text-3xl md:text-5xl underline">{expense.name}</h1>
                                 <section className="flex gap-5 items-center">
                                     <SignedIn>
@@ -116,6 +115,7 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
                                     </SignedIn>
                                 </section>
                             </section>
+                            {setCategoryIMG()}
                             <section className="grid grid-cols-2 gap-5 text-white font-bold text-sm">
                                 <ul className="col-span-1 h-full space-y-5">
                                     <li className="px-3 py-6 bg-indigo-500 rounded-lg">ID: {expense.id}</li>
