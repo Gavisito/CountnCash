@@ -1,11 +1,17 @@
 import { MongoClient } from "mongodb";
 
-if (!process.env.MONGODB_URI) {
-    throw new Error("Please add you MongoDB URI to .env.local")
+const uri = process.env.MONGODB_URI;
+
+if (!uri) {
+  throw new Error("Please add your MongoDB URI to .env.local");
 }
 
-// where mongo is running at. 
-const client = new MongoClient(process.env.MONGODB_URI);
+const options = {
+  tls: true,
+  serverSelectionTimeoutMS: 5000,
+};
+
+const client = new MongoClient(uri, options);
 const clientPromise = client.connect();
 
-export default clientPromise
+export default clientPromise;
