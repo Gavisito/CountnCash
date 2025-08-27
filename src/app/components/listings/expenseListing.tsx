@@ -9,6 +9,8 @@ import Search from '@/app/components/search/search'
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import { TableCellsIcon, QueueListIcon, Squares2X2Icon, PlusCircleIcon, MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline"; 
 import { SignedIn } from "@clerk/nextjs";
+import { DocumentArrowDownIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 
 // notes section:
 // componentize becuase i was thinking of placing this into the dash board page and habits of separating api and interactivity compoenents
@@ -17,6 +19,7 @@ interface expenseProps {
     expenses: Expense[]
 }
 export default function ExpenseListing({expenses}: expenseProps) {
+      const router = useRouter();
 
     // dynmaic choice for user to selecte what layout they want by storing string layouttype
     const [layout, setLayout] = useState("");
@@ -72,9 +75,11 @@ export default function ExpenseListing({expenses}: expenseProps) {
                         </div>
                         {/*Only will pop up if they are logged into an account*/}
                         <SignedIn>
-                            <button className="w-10 h-10 hover:cursor-pointer"> {/* This is the button that will generate the PDF */}
-                                <ArrowDownTrayIcon/>
-                            </button>
+                            <div>
+                                <button className="w-10 h-10 hover:cursor-pointer" onClick={() => router.push("/report")}>
+                                    <DocumentArrowDownIcon/>
+                                </button>
+                            </div>
                             <button className="w-10 h-10 hover:cursor-pointer">
                                 <Link href="/dashboard/expenses/add">
                                     <PlusCircleIcon/> 

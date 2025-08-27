@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { PencilSquareIcon, ChevronLeftIcon } from "@heroicons/react/24/outline"; 
+import { PencilSquareIcon } from "@heroicons/react/24/outline"; 
 import { Expense } from "@/app/types/expense";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import DeleteButton from "@/app/components/buttons/deleteButton";
 import { SignedIn } from "@clerk/nextjs";
+import BackButton from "@/app/components/buttons/backButton";
 
 // notes section
 // refactor was interesting was typscirpt params
@@ -32,8 +33,7 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
             method: "GET",
         });
 
-        const expense = await response.json();
-        console.log("Fetched expense:", expense);
+        const expense: Expense = await response.json();
 
         if (!expense) {
             notFound();
@@ -62,11 +62,9 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
 
         return (
             <div className="min-h-screen bg-white flex flex-col">
-                <button className="rounded-sm text-sm py-2 px-3 w-30 mt-5 text-black hover:cursor-pointer text-black">
-                    <Link className="gap-2 flex flex-row" href={`/dashboard/expenses/`}>
-                        <ChevronLeftIcon className="w-5 h-5"/> Go Back
-                    </Link>
-                </button>
+                <div className="rounded-sm text-sm py-2 px-3 w-30 mt-5 text-black hover:cursor-pointer text-black">
+                   <BackButton />
+                </div>
                 <article className="flex flex-col px-3 py-3 mt-2 space-y-8">
   
                     <section className="flex flex-col md:grid md:grid-cols-8 gap-5">

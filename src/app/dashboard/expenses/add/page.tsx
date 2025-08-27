@@ -157,7 +157,7 @@ export default function AddExpensePage() {
                         </label>
                     </fieldset>
                     <fieldset className="flex flex-col-reverse sm:grid sm:grid-cols-2 gap-5">
-                        <Link className="w-full bg-white border-2 border-black text-black p-4 rounded-lg text-center" href={`/dashboard/expenses/`}>Cancel</Link>
+                        <button className="w-full bg-white border-2 border-black text-black p-4 rounded-lg text-center" onClick={() => router.back()}>Cancel</button>
                         <button type="submit" className="w-full bg-indigo-800 text-white p-4 rounded-lg">Save Changes</button>
                     </fieldset>
                 </form>

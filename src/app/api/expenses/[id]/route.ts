@@ -14,7 +14,7 @@ import { auth } from '@clerk/nextjs/server';
 // getting an expense from an id 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
 	try{
-		const id = params.id;
+		const { id } = await params;
 		const expenseId = parseInt(id, 10);
 
 		if (isNaN(expenseId)) {
@@ -58,7 +58,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
 			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 		//getting the id of the expense card that was clicked from url
-		const id = params.id;
+		const { id } = params;
 		const expenseId = parseInt(id, 10);
 
 		if (isNaN(expenseId)) {
@@ -98,10 +98,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
 }
 
 // Updating an expense's information
-export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PUT( request: Request,{ params }: { params: { id: string } }) {
   try {
     const { userId } = await auth();
 

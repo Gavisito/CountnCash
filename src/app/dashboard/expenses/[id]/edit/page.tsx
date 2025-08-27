@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Expense } from "@/app/types/expense";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 // notes section
 // need to convert values from form to do proper number calculation always
@@ -64,8 +63,7 @@ export default function EditExpensePage() {
 				throw new Error("Failed to update expense");
 			}
 
-			router.push(`/dashboard/expenses/${expenseId}`);
-			router.refresh();
+			router.back();
 		} catch (error) {
 			console.error("Error updating expense:", error);
 		}
@@ -122,7 +120,7 @@ export default function EditExpensePage() {
 								name="amount"
 								type="number"
 								required
-								value={formData.amount || 0}
+								value={formData.amount}
 								onChange={handleChange}
 								className="w-full p-4 border-2 rounded-lg text-base"
 								placeholder="Enter the expense amount"
@@ -182,7 +180,7 @@ export default function EditExpensePage() {
 						</label>
 					</fieldset>
 					<fieldset className="flex flex-col-reverse sm:grid sm:grid-cols-2 gap-5">
-						<Link className="w-full bg-white border-2 border-black text-black p-4 rounded-lg text-center" href={`/dashboard/expenses/${expenseId}`}>Cancel</Link>
+						<button className="w-full bg-white border-2 border-black text-black p-4 rounded-lg text-center" onClick={() => router.back()}>Cancel</button>
 						<button type="submit" className="w-full bg-indigo-800 text-white p-4 rounded-lg">Save Changes</button>
 					</fieldset>
 				</form>

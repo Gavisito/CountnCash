@@ -4,11 +4,15 @@ import { useEffect, useState } from "react";
 import { pdf } from "@react-pdf/renderer";
 import ExpensePDFDocument from "@/app/components/report/report";
 import { Expense } from "@/app/types/expense";
+import { useRouter } from "next/navigation";
+import BackButton from "../components/buttons/backButton";
 
 export default function TaxReportPage() {
     const [expenses, setExpenses] = useState<Expense[]>([]);
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
+
+    const router = useRouter();
 
     useEffect(() => {
         fetch("/api/expenses")
@@ -48,9 +52,10 @@ export default function TaxReportPage() {
 
     return (
         <div className="font-sans px-4 py-10 w-full text-gray-800">
+            <BackButton />
 
             <header className="text-center mb-8">
-                <h1 className="text-3xl font-bold">Tax Expense Report</h1>
+                <h1 className="text-3xl font-bold">Expense Report</h1>
                 <p className="text-gray-500">
                 {startDate || formatDate(earliestDate)} – {endDate || formatDate(latestDate)} | Generated on {new Date().toLocaleDateString()}
                 </p>
@@ -98,7 +103,7 @@ export default function TaxReportPage() {
 
             <div className="text-right text-xl font-bold mt-10 border-t pt-4 flex justify-between items-center">
                 <button onClick={handleDownload} className="px-2 py-2 bg-purple-400 text-white rounded">
-                Download PDF
+                    Download PDF
                 </button>
                 <span>Grand Total: ${grandTotal.toFixed(2)}</span>
             </div>
