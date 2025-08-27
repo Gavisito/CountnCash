@@ -38,10 +38,10 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         const response = await fetch(`${apiUrl}/api/expenses/${expenseId}`, {
             method: "GET",
-            cache: "no-store", // ensures no caching
+            cache: "no-store",
             headers: {
                 "Content-Type": "application/json",
-                "Cookie": cookieHeader // forward only to your backend
+                "Cookie": cookieHeader 
             },
         });
 

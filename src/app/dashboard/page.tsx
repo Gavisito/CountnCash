@@ -24,10 +24,10 @@ export default async function Dashboard() {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         const response = await fetch(`${apiUrl}/api/expenses`, {
             method: "GET",
-            cache: "no-store", // no caching = always fresh
+            cache: "no-store", 
             headers: {
                 "Content-Type": "application/json",
-                "Cookie": cookieHeader // forward only to your backend
+                "Cookie": cookieHeader 
             },
         });
 
