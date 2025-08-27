@@ -3,17 +3,27 @@ import { Expense } from "@/app/types/expense";
 import ExpenseListing from "@/app/components/listings/expenseListing";
 import Link from "next/link";
 import { TableCellsIcon, QueueListIcon, Squares2X2Icon, PlusCircleIcon } from "@heroicons/react/24/outline"; 
+import { cookies } from "next/headers";
 
 // notes section
 // refactored the code so i get a habit of maing server side rendering, especially for api data and so if the data does not loading up there is a fail safe compoennt when it doesnt load properly
 // this helped me undertsand when to use client or server side rendering a lot. 
 
 export default async function ExpensePage() {
+    const cookieStore = await cookies();
+    const cookieHeader = cookieStore
+        .getAll()
+        .map(c => `${c.name}=${c.value}`)
+        .join(";");
     try {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL;
             const response = await fetch(`${apiUrl}/api/expenses`, {
                 method: "GET",
                 cache: "no-store", // no caching = always fresh
+                headers: {
+                    "Content-Type": "application/json",
+                    "Cookie": cookieHeader // forward only to your backend
+                },
             });
 
         if (!response.ok) {

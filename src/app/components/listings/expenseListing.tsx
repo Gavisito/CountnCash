@@ -6,7 +6,6 @@ import Grid from "@/app/components/displayLayouts/grid";
 import List from "@/app/components/displayLayouts/list"
 import Link from "next/link";
 import Search from '@/app/components/search/search'
-import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import { TableCellsIcon, QueueListIcon, Squares2X2Icon, PlusCircleIcon, MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline"; 
 import { SignedIn } from "@clerk/nextjs";
 import { DocumentArrowDownIcon } from "@heroicons/react/24/outline";

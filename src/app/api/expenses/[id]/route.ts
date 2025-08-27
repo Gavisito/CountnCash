@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 import { Expense } from "@/app/types/expense";
 import { auth } from '@clerk/nextjs/server';
+import { NextApiRequest } from "next";
 
 //notes section
 //assumign context is what getss specific information of a url that it is being requested such as specific id as seen below
@@ -12,14 +13,13 @@ import { auth } from '@clerk/nextjs/server';
 //const filePath = path.join(process.cwd(), "data", "/expenses.json");
 
 // getting an expense from an id 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-	try{
-		const { userId }= await auth();
+export async function GET(request: NextResponse, { params }: { params: { id: string } }) {
+    const { userId } = await auth();
 
-        if (!userId) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-		
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+	try{
 		const { id } = await params;
 		const expenseId = parseInt(id, 10);
 

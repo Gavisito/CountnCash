@@ -4,6 +4,7 @@ import { Expense } from "@/app/types/expense";
 import ExpenseListing from "@/app/components/listings/expenseListing";
 import BarChartComponent from "@/app/components/chartJS/barChart";
 import LineGraphComponent from "@/app/components/chartJS/lineGraph";
+import { cookies } from "next/headers";
 
 // notes section
 // learning how to assign data type to variables
@@ -14,21 +15,30 @@ import LineGraphComponent from "@/app/components/chartJS/lineGraph";
 
 export default async function Dashboard() {
     // fetching api data and setting up dynamic dashboard info num expenses, sum of expenses, and popular category
+    const cookieStore = await cookies();
+    const cookieHeader = cookieStore
+        .getAll()
+        .map(c => `${c.name}=${c.value}`)
+        .join(";");
     try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         const response = await fetch(`${apiUrl}/api/expenses`, {
             method: "GET",
             cache: "no-store", // no caching = always fresh
+            headers: {
+                "Content-Type": "application/json",
+                "Cookie": cookieHeader // forward only to your backend
+            },
         });
 
-        if (!response.ok) {
-            throw new Error("Failed to fetch expenses");
-        }
+    if (!response.ok) {
+        throw new Error("Failed to fetch expenses");
+    }
 
-        const data: { expenses: Expense[] } = await response.json();
-        const expensesData = data.expenses;
+    const data: { expenses: Expense[] } = await response.json();
+    const expensesData = data.expenses;
 
-        const allExpenses = [...expensesData]
+    const allExpenses = [...expensesData]
         
         // setting total number of expense 
         const numExpenses = expensesData.length;

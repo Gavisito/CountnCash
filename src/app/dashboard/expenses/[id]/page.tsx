@@ -6,6 +6,7 @@ import Link from "next/link";
 import DeleteButton from "@/app/components/buttons/deleteButton";
 import { SignedIn } from "@clerk/nextjs";
 import BackButton from "@/app/components/buttons/backButton";
+import { cookies } from "next/headers";
 
 // notes section
 // refactor was interesting was typscirpt params
@@ -26,11 +27,22 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
       notFound();
     }
 
+    const cookieStore = await cookies();
+    const cookieHeader = cookieStore
+        .getAll()
+        .map(c => `${c.name}=${c.value}`)
+        .join(";");
+
     // if all is good, shows the layout, if not then the not found oage wwill show
     try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         const response = await fetch(`${apiUrl}/api/expenses/${expenseId}`, {
             method: "GET",
+            cache: "no-store", // ensures no caching
+            headers: {
+                "Content-Type": "application/json",
+                "Cookie": cookieHeader // forward only to your backend
+            },
         });
 
         const expense: Expense = await response.json();
