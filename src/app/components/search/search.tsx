@@ -114,7 +114,7 @@ export default function Search({ stateChange }: { stateChange: (state: boolean) 
 	// this function purpose is to calllthis once when the search lighthouse is opened by the user otherwise loop of terror
 	useEffect(() => {
 		getCategories()
-	}, [])
+	}, [searchData.category])
 
 	return (
 	  	<div className="fixed inset-0 flex justify-center items-center bg-indigo-200/70">

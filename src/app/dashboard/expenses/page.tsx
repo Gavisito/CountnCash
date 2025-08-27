@@ -3,27 +3,25 @@ import { Expense } from "@/app/types/expense";
 import ExpenseListing from "@/app/components/listings/expenseListing";
 import Link from "next/link";
 import { TableCellsIcon, QueueListIcon, Squares2X2Icon, PlusCircleIcon } from "@heroicons/react/24/outline"; 
-import clientPromise from "@/lib/mongodb";
+
 // notes section
 // refactored the code so i get a habit of maing server side rendering, especially for api data and so if the data does not loading up there is a fail safe compoennt when it doesnt load properly
 // this helped me undertsand when to use client or server side rendering a lot. 
 
 export default async function ExpensePage() {
     try {
-        const client = await clientPromise;
-        const db = client.db("expensesDB");
-        const expensesData: Expense[] = (await db.collection("expenses").find({}).toArray()).map((doc) => ({
-            id: parseInt(doc.id.toString(), 10),
-            name: doc.name,
-            category: doc.category,
-            description: doc.description,
-            amount: doc.amount,
-            date: doc.date,
-            vendor: doc.vendor || "",
-            taxable: doc.taxable || false,
-            additionalNotes: doc.additionalNotes || "",
-            createdDate: doc.createdDate || new Date(),
-        }));
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+            const response = await fetch(`${apiUrl}/api/expenses`, {
+                method: "GET",
+                cache: "no-store", // no caching = always fresh
+            });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch expenses");
+        }
+
+        const data: { expenses: Expense[] } = await response.json();
+        const expensesData = data.expenses;
         
         //setting fecthed data in expense variable for display
         return (

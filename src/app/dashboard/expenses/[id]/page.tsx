@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import DeleteButton from "@/app/components/buttons/deleteButton";
 import { SignedIn } from "@clerk/nextjs";
-import clientPromise from "@/lib/mongodb";
+
 // notes section
 // refactor was interesting was typscirpt params
 // cool to move return of webpage layout into try block. this helped with being able to use the expense variable without use usestate which i tried to do initially
@@ -18,7 +18,7 @@ interface ExpenseDetailsProps {
   }
 
 export default async function DetailPage({ params }: ExpenseDetailsProps) {
-    const id = (await params).id;
+    const { id } = await params;
     const expenseId = parseInt(id, 10);
   
     if (isNaN(expenseId)) {
@@ -27,29 +27,16 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
 
     // if all is good, shows the layout, if not then the not found oage wwill show
     try {
-        const client = await clientPromise;
-        const db = client.db("expensesDB");
-    
-        const expenseDoc = await db
-          .collection("expenses")
-          .findOne({ id: expenseId });
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        const response = await fetch(`${apiUrl}/api/expenses/${expenseId}`, {
+            method: "GET",
+        });
 
-        const expense: Expense | null = expenseDoc
-          ? {
-              id: expenseDoc.id,
-              name: expenseDoc.name,
-              category: expenseDoc.category,
-              description: expenseDoc.description,
-              amount: expenseDoc.amount,
-              vendor: expenseDoc.vendor,
-              createdDate: expenseDoc.createdDate,
-              taxable: expenseDoc.taxable,
-              additionalNotes: expenseDoc.additionalNotes,
-            }
-          : null;
-    
+        const expense = await response.json();
+        console.log("Fetched expense:", expense);
+
         if (!expense) {
-          notFound();
+            notFound();
         }
 
         function setCategoryIMG() {
@@ -62,7 +49,7 @@ export default async function DetailPage({ params }: ExpenseDetailsProps) {
                     
                 case "Car":
                     return <Image src="/car.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of a car"/>
-        
+
                 case "Food":
                     return <Image src="/food.jpg" width={800} height={100} priority className="w-full h-full col-span-3 rounded-lg" alt="Microsoft word stock image of food"/>
     
