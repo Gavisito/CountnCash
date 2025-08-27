@@ -38,9 +38,11 @@ export default function AddExpensePage() {
 			if (!response.ok) {
 				throw new Error("Failed to create expense");
 			}
+            router.refresh(); 
+			setTimeout(() => {
+				router.push(`/dashboard/expenses/`);
+			}, 100);
 
-			router.push(`/dashboard/expenses/`);
-			router.refresh();
 		} catch (error) {
 			console.error("Error creating expense:", error);
 		}

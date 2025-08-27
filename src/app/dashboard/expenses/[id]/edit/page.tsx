@@ -62,8 +62,10 @@ export default function EditExpensePage() {
 			if (!response.ok) {
 				throw new Error("Failed to update expense");
 			}
-
-			router.back();
+			router.refresh(); 
+			setTimeout(() => {
+				router.back();
+			}, 100);
 		} catch (error) {
 			console.error("Error updating expense:", error);
 		}
