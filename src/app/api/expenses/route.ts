@@ -21,6 +21,11 @@ export async function GET() {
         //const jsonData = await fs.promises.readFile(filePath, "utf-8");
         //Expense[] ensures that an array is expected with correct underlying data types
         //const expenses: Expense[] = JSON.parse(jsonData);
+        const { userId }= await auth();
+
+        if (!userId) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
 
         const client = await clientPromise;
         const db = client.db("expensesDB");

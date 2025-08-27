@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import clientPromise from "@/lib/mongodb";
+import { auth } from '@clerk/nextjs/server';
 //notes section
 //how to get url parameter : https://github.com/vercel/next.js/discussions/47072
 // how to find a search term as they write into the searhc bar and case sensitivity removal. 
@@ -8,6 +9,11 @@ import clientPromise from "@/lib/mongodb";
 
 export async function GET(request: NextRequest) {
 	try {
+		const { userId } = await auth();
+
+        if (!userId) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
 		//allows to get the full url and find the parameter i need to get the name of the expense
 		const expenseName = request.nextUrl.searchParams.get('expenseName') || ' '
 		const categoryRequest = request.nextUrl.searchParams.getAll('category')

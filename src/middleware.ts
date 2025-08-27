@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 //edit and add expense information is blocked
-const isProtectedRoute = createRouteMatcher(["/dashboard/expenses/:id/(.*)", "/dashboard/expenses/add"]);
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/report"]);
 
 export default clerkMiddleware(async (auth, req) => {
     if (isProtectedRoute(req)) await auth.protect();

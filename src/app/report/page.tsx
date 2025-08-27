@@ -4,15 +4,12 @@ import { useEffect, useState } from "react";
 import { pdf } from "@react-pdf/renderer";
 import ExpensePDFDocument from "@/app/components/report/report";
 import { Expense } from "@/app/types/expense";
-import { useRouter } from "next/navigation";
 import BackButton from "../components/buttons/backButton";
 
 export default function TaxReportPage() {
     const [expenses, setExpenses] = useState<Expense[]>([]);
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-
-    const router = useRouter();
 
     useEffect(() => {
         fetch("/api/expenses")
