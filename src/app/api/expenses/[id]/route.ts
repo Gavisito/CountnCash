@@ -14,6 +14,12 @@ import { auth } from '@clerk/nextjs/server';
 // getting an expense from an id 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
 	try{
+		const { userId }= await auth();
+
+        if (!userId) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+		
 		const { id } = await params;
 		const expenseId = parseInt(id, 10);
 
